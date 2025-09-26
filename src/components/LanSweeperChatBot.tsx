@@ -17,12 +17,11 @@ function LanSweeperChatBot() {
   const messagesEndRef: any = useRef(null);
   const inputRef: any = useRef(null);
   const [inputValue, setInputValue] = useState("");
-  const [loading, setLoading] = useState(false);
   const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
 
   const chatId = localStorage.getItem("chatId");
 
-  const url = "https://ds-backend.digitalsherpa.ai"
+  const url = "https://ds-backend.digitalsherpa.ai";
 
   const getDataByid = async () => {
     const id = (chatId && JSON.parse(chatId)) || "";
@@ -40,13 +39,13 @@ function LanSweeperChatBot() {
     return response.data?.data;
   };
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   useEffect(() => {
     if (isOpen) {
-      scrollToBottom();
+      const timeout = setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 50);
+
+      return () => clearTimeout(timeout);
     }
   }, [messages, isOpen]);
 
@@ -107,11 +106,9 @@ function LanSweeperChatBot() {
   };
 
   useEffect(() => {
-    setLoading(true);
     getDataByid()
       .then((response) => console.log(response))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+      .catch((error) => console.log(error));
   }, []);
 
   const handleKeyPress = (e: any) => {
@@ -139,7 +136,7 @@ function LanSweeperChatBot() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                <Bot className="w-5 h-5" />
+                <Bot className="w-5 h-5 text-[#393e46]" />
               </div>
               <div>
                 <h3 className="font-semibold text-sm">AI Assistant</h3>
