@@ -22,9 +22,11 @@ function LanSweeperChatBot() {
 
   const chatId = localStorage.getItem("chatId");
 
+  const url = "https://ds-backend.digitalsherpa.ai"
+
   const getDataByid = async () => {
     const id = (chatId && JSON.parse(chatId)) || "";
-    const response: any = await axios.get("http://localhost:3005/chatbot", {
+    const response: any = await axios.get(`${url}/chatbot`, {
       params: { chatId: id },
     });
     setMessages(response.data?.data?.messages);
@@ -64,7 +66,7 @@ function LanSweeperChatBot() {
     const id = (chatId && JSON.parse(chatId)) || "";
     try {
       const response = await axios.post(
-        "http://localhost:3005/chatbot/send",
+        `${url}/chatbot/send`,
         { message: userMessage },
         { params: { chatId: id } }
       );

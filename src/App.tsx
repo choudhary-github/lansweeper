@@ -113,9 +113,9 @@ const App = () => (
 
       <ReviewCard />
     </div>
-    <div>
+    <>
       <LanSweeperChatBot />
-    </div>
+    </>
   </>
 );
 
