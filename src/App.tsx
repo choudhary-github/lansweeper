@@ -7,6 +7,7 @@ import MiniFeaturesSection from "./components/MiniFeaturesSection";
 import Usecases from "./components/Usecases";
 import IntegrationSection from "./components/IntegrationSection";
 import ReviewCard from "./components/ReviewCard";
+import LanSweeperChatBot from "./components/LanSweeperChatBot";
 
 const App = () => (
   <>
@@ -111,6 +112,9 @@ const App = () => (
       </div>
 
       <ReviewCard />
+    </div>
+    <div>
+      <LanSweeperChatBot />
     </div>
   </>
 );
